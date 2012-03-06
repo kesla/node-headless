@@ -3,13 +3,13 @@ node-xvfb
 
 node-xvfb makes it easy to start and use Xvfb in node.
 
-example
+API
 =======
 
-.startXvfb
+startXvfb()
 ----------
 
-.startXvfb is inspired by xvfb-run - it searches for a free X display number and starts Xvfb on that.
+startXvfb is inspired by xvfb-run - it searches for a free X display number and starts Xvfb on that.
 
 ````javascript
 var xvfb = require('xvfb');
@@ -19,7 +19,8 @@ xvfb.startXvfb(function(err, childProcess, servernum) {
   console.log('Xvfb running on server number', servernum);
   console.log('Xvfb pid', childProcess.pid);
   console.log('err should be null', err);
-});````
+});
+````
 
 .startXvfb also support an optional number to start searching from.
 
@@ -30,7 +31,8 @@ xvfb.startXvfb(200, function(err, childProcess, servernum) {
   // servernum will be at least 200
   console.log('Xvfb running on server number', servernum);
   console.log('Xvfb pid', childProcess.pid);
-});````
+});
+````
 
 install
 =======
