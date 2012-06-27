@@ -12,7 +12,7 @@ function findFreeServernum(servernum, callback) {
   });
 }
 
-module.exports = function (startnum, callback) {
+module.exports = function headless(startnum, callback) {
   if (!callback) {
     callback = startnum;
     startnum = 99;
@@ -31,7 +31,7 @@ module.exports = function (startnum, callback) {
     childProcess.on('exit', function() {
       clearTimeout(timeout);
       servernum++;
-      headless.startXvfb(servernum, callback);
+      headless(servernum, callback);
     });
   });
 }
