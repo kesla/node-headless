@@ -1,6 +1,5 @@
 var path = require('path');
 var spawn = require('child_process').spawn;
-var headless = exports;
 
 function findFreeServernum(servernum, callback) {
   path.exists('/tmp/.X' + servernum + '-lock', function(exists) {
@@ -13,7 +12,7 @@ function findFreeServernum(servernum, callback) {
   });
 }
 
-headless.startXvfb = function (startnum, callback) {
+module.exports = function (startnum, callback) {
   if (!callback) {
     callback = startnum;
     startnum = 99;

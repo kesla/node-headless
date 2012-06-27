@@ -14,7 +14,7 @@ startXvfb is inspired by xvfb-run - it searches for a free X display number and 
 ````javascript
 var headless = require('headless');
 
-headless.startXvfb(function(err, childProcess, servernum) {
+headless(function(err, childProcess, servernum) {
   // childProcess is a ChildProcess, as returned from child_process.spawn()
   console.log('Xvfb running on server number', servernum);
   console.log('Xvfb pid', childProcess.pid);
@@ -27,7 +27,7 @@ headless.startXvfb(function(err, childProcess, servernum) {
 ````javascript
 var headless = require('headless');
 
-headless.startXvfb(200, function(err, childProcess, servernum) {
+headless(200, function(err, childProcess, servernum) {
   // servernum will be at least 200
   console.log('Xvfb running on server number', servernum);
   console.log('Xvfb pid', childProcess.pid);
