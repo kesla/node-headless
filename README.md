@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/kesla/node-headless.png)](http://travis-ci.org/kesla/node-headless)
 node-headless
 =========
 
