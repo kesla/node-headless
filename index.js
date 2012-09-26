@@ -1,5 +1,11 @@
 var path = require('path');
-var spawn = require('child_process').spawn;
+var spawn;
+
+try {
+  spawn = require('child-killer').spawn;
+} catch(e) {
+  spawn = require('child_process').spawn;
+}
 
 function findFreeServernum(servernum, callback) {
   path.exists('/tmp/.X' + servernum + '-lock', function(exists) {
@@ -28,7 +34,7 @@ module.exports = function headless(startnum, callback) {
 
     // if Xvfb exits prematurely the servernum wasn't valid.
     // Happens if there's already an X-server running on @servernum but no file was created in /tmp
-    childProcess.on('exit', function() {
+    childProcess.once('exit', function() {
       clearTimeout(timeout);
       servernum++;
       headless(servernum, callback);

@@ -37,3 +37,5 @@ install
 With [npm](http://npmjs.org), do:
 
     npm install headless
+
+If you're having problems with Xvfb-instances not getting killed correctly, and is running on a platform that the posix-module supports, install [child-killer](https://npmjs.org/package/child-killer) (`npm install child-killer`) and headless will automatically use it.
