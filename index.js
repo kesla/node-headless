@@ -8,7 +8,7 @@ try {
 }
 
 function findFreeServernum(servernum, callback) {
-  path.exists('/tmp/.X' + servernum + '-lock', function(exists) {
+  fs.exists('/tmp/.X' + servernum + '-lock', function(exists) {
     if(exists) {
       servernum++;
       findFreeServernum(servernum, callback);
