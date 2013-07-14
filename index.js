@@ -29,6 +29,7 @@ module.exports = function headless(startnum, callback) {
     // assume starting Xvfb takes less than 500 ms and continue if it hasn't
     // exited during that time
     var timeout = setTimeout(function() {
+      childProcess.removeAllListeners('exit');
       callback(null, childProcess, servernum);
       childProcess.removeListener('exit', onExit);
     }, 500);
