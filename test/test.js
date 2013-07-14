@@ -10,6 +10,7 @@ headless(function(err, child, servernum) {
   assert.equal(typeof(child), 'object');
   assert.equal(typeof(child.kill), 'function');
   assert.equal(typeof(servernum), 'number');
+  assert.equal(child.listeners('exit').length, 0);
   child.kill();
   child.on('exit', process.exit);
 });

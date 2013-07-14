@@ -29,15 +29,18 @@ module.exports = function headless(startnum, callback) {
     // assume starting Xvfb takes less than 500 ms and continue if it hasn't
     // exited during that time
     var timeout = setTimeout(function() {
+      childProcess.removeListener('exit', onExit);
       callback(null, childProcess, servernum);
     }, 500);
 
-    // if Xvfb exits prematurely the servernum wasn't valid.
-    // Happens if there's already an X-server running on @servernum but no file was created in /tmp
-    childProcess.once('exit', function() {
+    function onExit() {
       clearTimeout(timeout);
       servernum++;
       headless(servernum, callback);
-    });
+    }
+
+    // if Xvfb exits prematurely the servernum wasn't valid.
+    // Happens if there's already an X-server running on @servernum but no file was created in /tmp
+    childProcess.once('exit', onExit);
   });
 }
