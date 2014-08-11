@@ -5,11 +5,11 @@ setTimeout(function() {
   throw new Error('Timeout 2 seconds. You don\'t have xvfb installed or something else is seriously wrong.');
 }, 2000);
 
-var options = {
+/*var options = {
 	display: {width: 1024, height: 980}
-};
+};*/
 
-headless(options, function(err, child, servernum) {
+headless(function(err, child, servernum) {
   assert.equal(err, null);
   assert.equal(typeof(child), 'object');
   assert.equal(typeof(child.kill), 'function');
