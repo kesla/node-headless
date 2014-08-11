@@ -27,6 +27,7 @@ module.exports = function headless(options, startnum, callback) {
   if (!callback) {
     callback = startnum;
     startnum = 99;
+    options = null;
   }
   findFreeServernum(startnum, function(servernum) {
     if (!options) {
