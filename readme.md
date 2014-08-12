@@ -1,9 +1,12 @@
-[![build status](https://secure.travis-ci.org/kesla/node-headless.png)](http://travis-ci.org/kesla/node-headless)
-node-headless
+node-headless[![build status](https://secure.travis-ci.org/kesla/node-headless.png)](http://travis-ci.org/kesla/node-headless)
 =========
 
 node-headless makes it easy to start and use Xvfb in node.
 headless is inspired by xvfb-run - it searches for a free X display number and starts Xvfb on that.
+
+[![NPM](https://nodei.co/npm/headless.png?downloads&stars)](https://nodei.co/npm/headless/)
+
+[![NPM](https://nodei.co/npm-dl/headless.png)](https://nodei.co/npm/headless/)
 
 API
 =======
