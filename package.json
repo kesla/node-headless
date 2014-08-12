@@ -16,5 +16,17 @@
   },
   "dependencies": {},
   "devDependencies": {},
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "bugs": {
+    "url": "https://github.com/kesla/node-headless/issues"
+  },
+  "homepage": "https://github.com/kesla/node-headless",
+  "directories": {
+    "test": "test"
+  },
+  "license": "MIT",
+  "keywords": [
+    "xvfb",
+    "headless"
+  ]
 }
