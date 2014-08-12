@@ -18,14 +18,25 @@ function findFreeServernum(servernum, callback) {
   });
 }
 
-module.exports = function headless(startnum, callback) {
+module.exports = function headless(options, startnum, callback) {
+  if (!startnum) {
+    callback = options;
+    startnum = 99;
+    options = null;
+  }
   if (!callback) {
     callback = startnum;
     startnum = 99;
+    options = null;
   }
-
   findFreeServernum(startnum, function(servernum) {
-    var childProcess = spawn('Xvfb', [':' + servernum]);
+    if (!options) {
+      var childProcess = spawn('Xvfb', [':' + servernum]);
+    }
+    else {
+      var childProcess = spawn('Xvfb', [':' + servernum , '-screen' , '0' , options.display.width + 'x' + options.display.height + 'x16' ]);
+    }
+    
     // assume starting Xvfb takes less than 500 ms and continue if it hasn't
     // exited during that time
     var timeout = setTimeout(function() {
