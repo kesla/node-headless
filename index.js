@@ -19,21 +19,34 @@ function findFreeServernum(servernum, callback) {
 }
 
 module.exports = function headless(options, startnum, callback) {
-  if (!startnum) {
+  
+  if (!callback && !startnum) { 
     callback = options;
-    startnum = 99;
     options = null;
+    startnum = 99;
   }
-  if (!callback) {
+  else if (!callback && startnum){
     callback = startnum;
-    startnum = 99;
-    options = null;
+    if (typeof options === 'object') {
+      startnum = 99;
+      console.log("no startnum");
+    }
+    else if (typeof options === 'number') {
+      startnum = options;
+      options = null;
+    }
   }
+
   findFreeServernum(startnum, function(servernum) {
+    console.log("options : " +JSON.stringify(options));
+    console.log("startnum : " +startnum);
+    console.log("callback : " +callback); 
     if (!options) {
+      console.log("no options");
       var childProcess = spawn('Xvfb', [':' + servernum]);
     }
     else {
+      console.log("options");
       var childProcess = spawn('Xvfb', [':' + servernum , '-screen' , '0' , options.display.width + 'x' + options.display.height + 'x16' ]);
     }
     
