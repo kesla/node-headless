@@ -19,7 +19,7 @@ function findFreeServernum(servernum, callback) {
 }
 
 module.exports = function headless(options, startnum, callback) {
-  
+  // arg1 in headless(arg1, arg2) will be interpreted as startnum or options depending on the type of the parameter
   if (!callback && !startnum) { 
     callback = options;
     options = null;
@@ -29,7 +29,6 @@ module.exports = function headless(options, startnum, callback) {
     callback = startnum;
     if (typeof options === 'object') {
       startnum = 99;
-      console.log("no startnum");
     }
     else if (typeof options === 'number') {
       startnum = options;
@@ -38,15 +37,10 @@ module.exports = function headless(options, startnum, callback) {
   }
 
   findFreeServernum(startnum, function(servernum) {
-    console.log("options : " +JSON.stringify(options));
-    console.log("startnum : " +startnum);
-    console.log("callback : " +callback); 
     if (!options) {
-      console.log("no options");
       var childProcess = spawn('Xvfb', [':' + servernum]);
     }
     else {
-      console.log("options");
       var childProcess = spawn('Xvfb', [':' + servernum , '-screen' , '0' , options.display.width + 'x' + options.display.height + 'x16' ]);
     }
     
