@@ -14,11 +14,7 @@ API
 ````javascript
 var headless = require('headless');
 
-var options = {
-	display: {width: 1024, height: 980}
-};
-
-headless(options, function(err, childProcess, servernum) {
+headless(function(err, childProcess, servernum) {
   // childProcess is a ChildProcess, as returned from child_process.spawn()
   console.log('Xvfb running on server number', servernum);
   console.log('Xvfb pid', childProcess.pid);
@@ -31,14 +27,42 @@ headless also support an optional number to start searching from.
 ````javascript
 var headless = require('headless');
 
-var options = {
-	display : {width: 1024, height: 980}
-};
-
-headless(options, 200, function(err, childProcess, servernum) {
+headless(200, function(err, childProcess, servernum) {
   // servernum will be at least 200
   console.log('Xvfb running on server number', servernum);
   console.log('Xvfb pid', childProcess.pid);
+});
+````
+
+the icing on the cake : headless support optionals display parameters (width & height). 
+
+````javascript
+var headless = require('headless');
+
+var options = {
+  display: {width: 1024, height: 980}
+};
+
+headless(options, function(err, childProcess, servernum) {
+  // childProcess is a ChildProcess, as returned from child_process.spawn()
+  console.log('Xvfb running on server number', servernum);
+  console.log('Xvfb pid', childProcess.pid);
+  console.log('err should be null', err);
+});
+````
+
+````javascript
+var headless = require('headless');
+
+var options = {
+  display: {width: 1024, height: 980}
+};
+
+headless(options, 200, function(err, childProcess, servernum) {
+  // childProcess is a ChildProcess, as returned from child_process.spawn()
+  console.log('Xvfb running on server number', servernum);
+  console.log('Xvfb pid', childProcess.pid);
+  console.log('err should be null', err);
 });
 ````
 
