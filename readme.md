@@ -34,13 +34,13 @@ headless(200, function(err, childProcess, servernum) {
 });
 ````
 
-the icing on the cake : headless support optionals display parameters (width & height). 
+the icing on the cake : headless support optionals display parameters (width & height & depth).
 
 ````javascript
 var headless = require('headless');
 
 var options = {
-  display: {width: 1024, height: 980}
+  display: {width: 1024, height: 980, depth: 32}
 };
 
 headless(options, function(err, childProcess, servernum) {
@@ -55,7 +55,7 @@ headless(options, function(err, childProcess, servernum) {
 var headless = require('headless');
 
 var options = {
-  display: {width: 1024, height: 980}
+  display: {width: 1024, height: 980} // depth defaults to 16
 };
 
 headless(options, 200, function(err, childProcess, servernum) {

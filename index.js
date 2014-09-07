@@ -41,7 +41,7 @@ module.exports = function headless(options, startnum, callback) {
       var childProcess = spawn('Xvfb', [':' + servernum]);
     }
     else {
-      var childProcess = spawn('Xvfb', [':' + servernum , '-screen' , '0' , options.display.width + 'x' + options.display.height + 'x16' ]);
+      var childProcess = spawn('Xvfb', [':' + servernum , '-screen' , '0' , options.display.width + 'x' + options.display.height + 'x' + (options.display.depth || 16) ]);
     }
     
     // assume starting Xvfb takes less than 500 ms and continue if it hasn't
