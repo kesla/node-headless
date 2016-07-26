@@ -34,13 +34,14 @@ headless(200, function(err, childProcess, servernum) {
 });
 ````
 
-the icing on the cake : headless support optionals display parameters (width & height & depth).
+the icing on the cake : headless support optionals display parameters (width & height & depth) as well as arbitrary Xvfb arguments.
 
 ````javascript
 var headless = require('headless');
 
 var options = {
-  display: {width: 1024, height: 980, depth: 32}
+  display: {width: 1024, height: 980, depth: 32},
+  args: ['-extension', 'RANDR']
 };
 
 headless(options, function(err, childProcess, servernum) {

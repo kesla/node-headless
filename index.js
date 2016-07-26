@@ -37,12 +37,14 @@ module.exports = function headless(options, startnum, callback) {
   }
 
   findFreeServernum(startnum, function(servernum) {
-    if (!options) {
-      var childProcess = spawn('Xvfb', [':' + servernum]);
+    options = options || {}
+
+    var args = options.args || []
+    var display = []
+    if (options.display) {
+      display = ['-screen', '0', options.display.width + 'x' + options.display.height + 'x' + (options.display.depth || 16)]
     }
-    else {
-      var childProcess = spawn('Xvfb', [':' + servernum , '-screen' , '0' , options.display.width + 'x' + options.display.height + 'x' + (options.display.depth || 16) ]);
-    }
+    var childProcess = spawn('Xvfb', [':' + servernum].concat(display).concat(args));
     
     // assume starting Xvfb takes less than 500 ms and continue if it hasn't
     // exited during that time
