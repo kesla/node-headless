@@ -36,16 +36,17 @@ module.exports = function headless(options, startnum, callback) {
     }
   }
 
-  findFreeServernum(startnum, function(servernum) {
-    options = options || {}
+  options = options || {}
 
-    var args = options.args || []
-    var display = []
-    if (options.display) {
-      display = ['-screen', '0', options.display.width + 'x' + options.display.height + 'x' + (options.display.depth || 16)]
-    }
-    var childProcess = spawn('Xvfb', [':' + servernum].concat(display).concat(args));
-    
+  var display = []
+  if (options.display) {
+    display = ['-screen', '0', options.display.width + 'x' + options.display.height + 'x' + (options.display.depth || 16)]
+  }
+
+  findFreeServernum(startnum, function(servernum) {
+    var args = [':' + servernum].concat(display).concat(options.args || []);
+    var childProcess = spawn('Xvfb', args, {});
+
     // assume starting Xvfb takes less than 500 ms and continue if it hasn't
     // exited during that time
     var timeout = setTimeout(function() {
