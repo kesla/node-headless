@@ -6,7 +6,8 @@ setTimeout(function() {
 }, 2000);
 
 var options = {
-	display: {width: 1024, height: 980}
+  display: {width: 1024, height: 980},
+  stdio: 'inherit'
 };
 
 headless(options, function(err, child, servernum) {

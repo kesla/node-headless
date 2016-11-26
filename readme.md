@@ -34,32 +34,21 @@ headless(200, function(err, childProcess, servernum) {
 });
 ````
 
-the icing on the cake : headless support optionals display parameters (width & height & depth) as well as arbitrary Xvfb arguments.
+Options:
+- `display`: optional display parameters (`width`, `height` & `depth`). If you want to specify `display`, `width` and `height` are required, but `depth` is optional and defaults to 16.
+- `args`: an array of arbitrary additional Xvfb arguments
+- `stdio`: set the stdio of the spawned Xvfb process(es). Set this to `'inherit'` to see Xvfb's stdout and stderr for debugging purposes.
 
 ````javascript
 var headless = require('headless');
 
 var options = {
   display: {width: 1024, height: 980, depth: 32},
-  args: ['-extension', 'RANDR']
+  args: ['-extension', 'RANDR'],
+  stdio: 'inherit'
 };
 
 headless(options, function(err, childProcess, servernum) {
-  // childProcess is a ChildProcess, as returned from child_process.spawn()
-  console.log('Xvfb running on server number', servernum);
-  console.log('Xvfb pid', childProcess.pid);
-  console.log('err should be null', err);
-});
-````
-
-````javascript
-var headless = require('headless');
-
-var options = {
-  display: {width: 1024, height: 980} // depth defaults to 16
-};
-
-headless(options, 200, function(err, childProcess, servernum) {
   // childProcess is a ChildProcess, as returned from child_process.spawn()
   console.log('Xvfb running on server number', servernum);
   console.log('Xvfb pid', childProcess.pid);
