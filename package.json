@@ -12,7 +12,7 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=0.6"
+    "node": ">=0.7"
   },
   "dependencies": {},
   "devDependencies": {},
